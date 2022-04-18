@@ -18,13 +18,16 @@
                 let username = $.trim($("#userName_ipt").val());
                 let password = $.trim($("#password_ipt").val());
                 let isRemember = $.trim($("#isRemember_ipt").prop("checked"));
+                let msg = $("#msg");
                 // 参数校验
                 // 1、非空校验
                 if (username === '') {
                     alert('请输入用户名！');
+                    $("#submitBtn").attr("disabled", false);
                     return;
                 } else if (password === '') {
                     alert('请输入密码！')
+                    $("#submitBtn").attr("disabled", false);
                     return;
                 }
                 // 2、非法字符校验（略）
@@ -33,19 +36,17 @@
                     url: 'user/login.do',
                     type: 'post',
                     data: {
-                        username,
-                        password,
+                        name: username,
+                        pwd: password,
                         isRemember
                     },
                     dataType: 'json',
                     success: function (result) {
-                        if (result == '') {
-                            alert('登陆失败');
-                        } else if (result.status === 'failed') {
-                            alert('登陆失败');
-                        } else if (result.status === 'success' && result.data != null) {
-                            alert('登陆成功：' + result.data);
-                        } else alert('未知错误');
+                        if (result.status === 'Fail') {
+                            msg.text(result.data.errorMsg);
+                        } else if (result.status === 'Success' && result.data != null) {
+                            window.location.href = 'workbench'
+                        } else msg.text("未知错误");
                         $("#submitBtn").attr("disabled", false);
                     }
                 })
@@ -59,7 +60,7 @@
 </div>
 <div id="top" style="height: 50px; background-color: #3C3C3C; width: 100%;">
     <div style="position: absolute; top: 5px; left: 0px; font-size: 30px; font-weight: 400; color: white; font-family: 'times new roman'">
-        CRM &nbsp;<span style="font-size: 12px;">&copy;2019&nbsp;动力节点</span></div>
+        CRM &nbsp;<span style="font-size: 12px;">&copy;2022&nbsp;Nanum</span></div>
 </div>
 
 <div style="position: absolute; top: 120px; right: 100px;width:450px;height:400px;border:1px solid #D5D5D5">

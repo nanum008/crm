@@ -189,9 +189,14 @@
     </update>
 
     <select id="login" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"></include>
+        select  <include refid="Base_Column_List"></include>
         from tbl_user
         where name = #{param1} and login_pwd = #{param2}
+    </select>
+
+    <select id="queryByEmail" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include>
+        from tbl_user
+        where email = #{param1}
     </select>
 </mapper>

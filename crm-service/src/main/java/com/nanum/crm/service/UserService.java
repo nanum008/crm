@@ -1,5 +1,6 @@
 package com.nanum.crm.service;
 
+import com.nanum.crm.common.error.BusinessException;
 import com.nanum.crm.dao.dataobject.UserDO;
 
 public interface UserService {
@@ -15,5 +16,5 @@ public interface UserService {
 
     int updateByPrimaryKey(UserDO record);
 
-    UserDO login(String email, String pwd);
+    UserDO login(String email, String pwd) throws BusinessException;
 }

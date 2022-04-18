@@ -1,5 +1,7 @@
 package com.nanum.crm.service.impl;
 
+import com.nanum.crm.common.error.BusinessException;
+import com.nanum.crm.common.error.EmBusinessError;
 import com.nanum.crm.dao.UserDOMapper;
 import com.nanum.crm.dao.dataobject.UserDO;
 import com.nanum.crm.service.UserService;
@@ -43,14 +45,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDO login(String email, String pwd) {
+    public UserDO login(String email, String pwd) throws BusinessException {
         // 根据用户邮箱地址查询用户
-        // 查询结果为空：登录失败
+        // 1、查询结果为空，用户不存在：登录失败。
         UserDO userDO = userDOMapper.queryByEmail(email);
-        if (userDO == null) {
-
-        }
-
-        return null;
+        if (userDO == null) throw new BusinessException(EmBusinessError.USER_NOT_EXIST);
+        // 2、密码比对失败：登录失败。
+        if (!userDO.getLoginPwd().equals(pwd)) throw new BusinessException(EmBusinessError.USER_PASSWORD_DONT_MATCH);
+        // 3、账户锁定：登陆失败。
+        if (!"1".equals(userDO.getLockState())) throw new BusinessException(EmBusinessError.USER_LOCK_STATE);
+        return userDO;
     }
 }

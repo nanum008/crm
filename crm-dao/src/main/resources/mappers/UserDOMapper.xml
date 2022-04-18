@@ -195,7 +195,7 @@
     </select>
 
     <select id="queryByEmail" resultMap="BaseResultMap">
-        select <include refid="Base_Column_list"></include>
+        select <include refid="Base_Column_List"></include>
         from tbl_user
         where email = #{param1}
     </select>

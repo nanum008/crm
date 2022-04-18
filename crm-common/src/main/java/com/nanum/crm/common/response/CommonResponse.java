@@ -6,11 +6,12 @@ public class CommonResponse {
     // 处理结果
     private Object data;
 
-    private CommonResponse(){}
+    private CommonResponse() {
+    }
 
-    public static CommonResponse create(Object data){
+    public static CommonResponse create(Object data) {
 
-        return CommonResponse.create("success",data);
+        return CommonResponse.create("Success", data);
     }
 
     public static CommonResponse create(String status, Object data) {

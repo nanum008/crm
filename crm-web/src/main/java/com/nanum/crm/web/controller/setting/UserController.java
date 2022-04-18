@@ -1,8 +1,11 @@
 package com.nanum.crm.web.controller.setting;
 
+import com.nanum.crm.common.error.BusinessException;
+import com.nanum.crm.common.error.EmBusinessError;
 import com.nanum.crm.common.response.CommonResponse;
 import com.nanum.crm.dao.dataobject.UserDO;
 import com.nanum.crm.service.UserService;
+import com.nanum.crm.web.controller.BaseController;
 import com.sun.deploy.net.HttpResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +19,12 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
     public static final Logger logger = Logger.getLogger(UserController.class);
 
     @Autowired
@@ -33,7 +38,7 @@ public class UserController {
 
     // 转发到用户登录页面
     @GetMapping("/login")
-    public String toLogin() {
+    public String toLogin() throws NoSuchAlgorithmException {
         return "settings/qx/user/login";
     }
 
@@ -43,25 +48,36 @@ public class UserController {
     public CommonResponse login(@RequestParam(name = "name") String username,
                                 @RequestParam(name = "pwd") String password,
                                 @RequestParam(name = "isRemember", defaultValue = "false") Boolean isRemember,
-                                @RequestParam HttpServletRequest httpServletRequest) throws NoSuchAlgorithmException {
-        // 获取加密后的密码。
-        String entryStr = encrypt(password);
+                                HttpServletRequest httpServletRequest) throws NoSuchAlgorithmException, BusinessException {
         // 调用登录服务。
-        UserDO userDO = userService.login(username, entryStr);
-        // 为空：登陆失败。
-        if (userDO == null) return CommonResponse.create("failed", userDO);
-        // 不为空：返回登录对象。
-        return CommonResponse.create(userDO);
+        UserDO userDO = userService.login(username, encrypt(password));
+        boolean isAllowIp = false;
+        String remoteHost = httpServletRequest.getRemoteHost();
+        String allowIps_str = userDO.getAllowIps();
+        String[] allowIps = allowIps_str.split(",");
+        for (String allowIp : allowIps) {
+            if (allowIp.equals(remoteHost)) isAllowIp = true;
+        }
+        if (!isAllowIp) throw new BusinessException(EmBusinessError.USER_IP_DONT_MATCH);
+        if (userDO != null && isAllowIp) httpServletRequest.getSession().setAttribute("user", userDO);
+        Map<String, Object> userInfo = new HashMap<>();
+        userInfo.put("user", userDO);
+        return CommonResponse.create(userInfo);
+    }
+
+    @PostMapping("/register")
+    @ResponseBody
+    public CommonResponse register() {
+
+        return null;
     }
 
     // 密码加密
-    public String encrypt(String txt) throws NoSuchAlgorithmException {
+    public static String encrypt(String txt) throws NoSuchAlgorithmException {
         MessageDigest md5 = MessageDigest.getInstance("MD5");
         Base64.Encoder encoder = Base64.getEncoder();
         String encryptTxt = encoder.encodeToString(md5.digest(txt.getBytes(StandardCharsets.UTF_8)));
-        System.out.println("加密文本 = " + encryptTxt);
         String s = Base64.getDecoder().decode(encryptTxt).toString();
-        System.out.println("s = " + s);
         return encryptTxt;
     }
 }
