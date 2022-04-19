@@ -14,6 +14,12 @@
     <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
     <script>
         $(function () {
+            // 按Enter键登录。
+            $(window).keydown(function (event) {
+                if (event.keyCode==13) $("#submitBtn").click();
+            })
+
+            // 点击登录按钮登录。
             $("#submitBtn").click(function () {
                 $("#submitBtn").attr("disabled", true);
                 let username = $.trim($("#userName_ipt").val());
