@@ -26,16 +26,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("/user")
 public class UserController extends BaseController {
+
     public static final Logger logger = Logger.getLogger(UserController.class);
 
     @Autowired
     UserService userService;
-
-    //@Autowired
-    //HttpServletRequest httpServletRequest;
-    //
-    //@Autowired
-    //HttpServletResponse httpServletResponse;
 
     // 转发到用户登录页面
     @GetMapping("/login")
