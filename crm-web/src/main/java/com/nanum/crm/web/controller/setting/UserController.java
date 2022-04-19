@@ -53,19 +53,19 @@ public class UserController extends BaseController {
                                 HttpServletResponse httpServletResponse) throws NoSuchAlgorithmException, BusinessException {
         // 调用登录服务。
         UserDO userDO = userService.login(username, MessageDigestUtil.encrypt(password, Constant.ENCRYPT_KEY));
-        // IP检测
-        boolean isAllowIp = false;
-        String remoteHost = httpServletRequest.getRemoteHost();
-        String allowIps_str = userDO.getAllowIps();
-        String[] allowIps = allowIps_str.split(",");
-        for (String allowIp : allowIps) {
-            if (allowIp.equals(remoteHost)) {
-                isAllowIp = true;
-                break;
-            }
-        }
-        if (!isAllowIp) throw new BusinessException(EmBusinessError.USER_IP_DONT_MATCH);
-        if (userDO != null && isAllowIp) httpServletRequest.getSession().setAttribute("user", userDO);
+        // IP检测【暂时关闭】
+        //boolean isAllowIp = false;
+        //String remoteHost = httpServletRequest.getRemoteHost();
+        //String allowIps_str = userDO.getAllowIps();
+        //String[] allowIps = allowIps_str.split(",");
+        //for (String allowIp : allowIps) {
+        //    if (allowIp.equals(remoteHost)) {
+        //        isAllowIp = true;
+        //        break;
+        //    }
+        //}
+        //if (!isAllowIp) throw new BusinessException(EmBusinessError.USER_IP_DONT_MATCH);
+        httpServletRequest.getSession().setAttribute("user", userDO);
         // 记住密码
         if (isRemember) {
             Cookie cookie = new Cookie("email", userDO.getEmail());
