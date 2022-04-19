@@ -39,7 +39,7 @@ public class UserController extends BaseController {
 
     // 转发到用户登录页面
     @GetMapping("/login")
-    public String toLogin() throws NoSuchAlgorithmException {
+    public String toLogin() {
         return "settings/qx/user/login";
     }
 
@@ -71,7 +71,7 @@ public class UserController extends BaseController {
             Cookie cookie = new Cookie("email", userDO.getEmail());
             int i = 60 * 60 * 24 * 10;
             cookie.setMaxAge(i);
-            Cookie cookie1 = new Cookie("pwd", MessageDigestUtil.decrypt(userDO.getLoginPwd(),Constant.ENCRYPT_KEY));
+            Cookie cookie1 = new Cookie("pwd", MessageDigestUtil.decrypt(userDO.getLoginPwd(), Constant.ENCRYPT_KEY));
             cookie1.setMaxAge(i);
             httpServletResponse.addCookie(cookie);
             httpServletResponse.addCookie(cookie1);
