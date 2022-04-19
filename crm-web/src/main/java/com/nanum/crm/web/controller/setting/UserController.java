@@ -53,6 +53,7 @@ public class UserController extends BaseController {
                                 HttpServletResponse httpServletResponse) throws NoSuchAlgorithmException, BusinessException {
         // 调用登录服务。
         UserDO userDO = userService.login(username, MessageDigestUtil.encrypt(password, Constant.ENCRYPT_KEY));
+        // IP检测
         boolean isAllowIp = false;
         String remoteHost = httpServletRequest.getRemoteHost();
         String allowIps_str = userDO.getAllowIps();
@@ -75,9 +76,9 @@ public class UserController extends BaseController {
             httpServletResponse.addCookie(cookie);
             httpServletResponse.addCookie(cookie1);
         } else {
-            Cookie cookie = new Cookie("username", "null");
+            Cookie cookie = new Cookie("email", "null");
             cookie.setMaxAge(0);
-            Cookie cookie1 = new Cookie("pwd", "m=null");
+            Cookie cookie1 = new Cookie("pwd", "null");
             cookie1.setMaxAge(0);
             httpServletResponse.addCookie(cookie);
             httpServletResponse.addCookie(cookie1);

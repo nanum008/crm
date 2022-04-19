@@ -78,10 +78,10 @@
             </div>
             <div class="checkbox" style="position: relative;top: 30px; left: 10px;">
                 <label>
-                    <c:if test="${not empty cookie.username and not empty cookie.pwd}">
+                    <c:if test="${not empty cookie.email and not empty cookie.pwd}">
                         <input id="isRemember_ipt" type="checkbox" checked> 十天内免登录
                     </c:if>
-                    <c:if test="${ empty cookie.username or  empty cookie.pwd}">
+                    <c:if test="${ empty cookie.email or  empty cookie.pwd}">
                         <input id="isRemember_ipt" type="checkbox"> 十天内免登录
                     </c:if>
                 </label>
