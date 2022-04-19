@@ -8,7 +8,7 @@ public enum EmBusinessError implements CommonError {
     USER_IP_DONT_MATCH(3330003, "IP受限"),
     UNKNOWN_ERROR(9999999, "未知错误");
 
-    private int errorCode;
+    private final int errorCode;
     private String errorMsg;
 
     EmBusinessError(int errorCode, String errorMsg) {

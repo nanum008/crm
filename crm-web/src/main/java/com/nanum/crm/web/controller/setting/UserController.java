@@ -1,18 +1,19 @@
 package com.nanum.crm.web.controller.setting;
 
+import com.nanum.crm.common.Constant;
 import com.nanum.crm.common.error.BusinessException;
 import com.nanum.crm.common.error.EmBusinessError;
 import com.nanum.crm.common.response.CommonResponse;
+import com.nanum.crm.common.utils.MessageDigestUtil;
 import com.nanum.crm.dao.dataobject.UserDO;
 import com.nanum.crm.service.UserService;
 import com.nanum.crm.web.controller.BaseController;
-import com.sun.deploy.net.HttpResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import sun.security.provider.MD5;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.StandardCharsets;
@@ -30,11 +31,11 @@ public class UserController extends BaseController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    HttpServletRequest httpServletRequest;
-
-    @Autowired
-    HttpServletResponse httpServletResponse;
+    //@Autowired
+    //HttpServletRequest httpServletRequest;
+    //
+    //@Autowired
+    //HttpServletResponse httpServletResponse;
 
     // 转发到用户登录页面
     @GetMapping("/login")
@@ -48,18 +49,39 @@ public class UserController extends BaseController {
     public CommonResponse login(@RequestParam(name = "name") String username,
                                 @RequestParam(name = "pwd") String password,
                                 @RequestParam(name = "isRemember", defaultValue = "false") Boolean isRemember,
-                                HttpServletRequest httpServletRequest) throws NoSuchAlgorithmException, BusinessException {
+                                HttpServletRequest httpServletRequest,
+                                HttpServletResponse httpServletResponse) throws NoSuchAlgorithmException, BusinessException {
         // 调用登录服务。
-        UserDO userDO = userService.login(username, encrypt(password));
+        UserDO userDO = userService.login(username, MessageDigestUtil.encrypt(password, Constant.ENCRYPT_KEY));
         boolean isAllowIp = false;
         String remoteHost = httpServletRequest.getRemoteHost();
         String allowIps_str = userDO.getAllowIps();
         String[] allowIps = allowIps_str.split(",");
         for (String allowIp : allowIps) {
-            if (allowIp.equals(remoteHost)) isAllowIp = true;
+            if (allowIp.equals(remoteHost)) {
+                isAllowIp = true;
+                break;
+            }
         }
         if (!isAllowIp) throw new BusinessException(EmBusinessError.USER_IP_DONT_MATCH);
         if (userDO != null && isAllowIp) httpServletRequest.getSession().setAttribute("user", userDO);
+        // 记住密码
+        if (isRemember) {
+            Cookie cookie = new Cookie("email", userDO.getEmail());
+            int i = 60 * 60 * 24 * 10;
+            cookie.setMaxAge(i);
+            Cookie cookie1 = new Cookie("pwd", MessageDigestUtil.decrypt(userDO.getLoginPwd(),Constant.ENCRYPT_KEY));
+            cookie1.setMaxAge(i);
+            httpServletResponse.addCookie(cookie);
+            httpServletResponse.addCookie(cookie1);
+        } else {
+            Cookie cookie = new Cookie("username", "null");
+            cookie.setMaxAge(0);
+            Cookie cookie1 = new Cookie("pwd", "m=null");
+            cookie1.setMaxAge(0);
+            httpServletResponse.addCookie(cookie);
+            httpServletResponse.addCookie(cookie1);
+        }
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("user", userDO);
         return CommonResponse.create(userInfo);
@@ -72,12 +94,5 @@ public class UserController extends BaseController {
         return null;
     }
 
-    // 密码加密
-    public static String encrypt(String txt) throws NoSuchAlgorithmException {
-        MessageDigest md5 = MessageDigest.getInstance("MD5");
-        Base64.Encoder encoder = Base64.getEncoder();
-        String encryptTxt = encoder.encodeToString(md5.digest(txt.getBytes(StandardCharsets.UTF_8)));
-        String s = Base64.getDecoder().decode(encryptTxt).toString();
-        return encryptTxt;
-    }
+
 }

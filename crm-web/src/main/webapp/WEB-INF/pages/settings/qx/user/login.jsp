@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basepath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -70,14 +71,19 @@
         </div>
         <div class="form-group form-group-lg">
             <div style="width: 350px;">
-                <input id="userName_ipt" class="form-control" type="text" placeholder="用户名">
+                    <input id="userName_ipt" class="form-control" type="text" placeholder="邮箱地址" value="${cookie.email.value}">
             </div>
             <div style="width: 350px; position: relative;top: 20px;">
-                <input id="password_ipt" class="form-control" type="password" placeholder="密码">
+                <input id="password_ipt" class="form-control" type="password" placeholder="密码" value="${cookie.pwd.value}">
             </div>
             <div class="checkbox" style="position: relative;top: 30px; left: 10px;">
                 <label>
-                    <input id="isRemember_ipt" type="checkbox"> 十天内免登录
+                    <c:if test="${not empty cookie.username and not empty cookie.pwd}">
+                        <input id="isRemember_ipt" type="checkbox" checked> 十天内免登录
+                    </c:if>
+                    <c:if test="${ empty cookie.username or  empty cookie.pwd}">
+                        <input id="isRemember_ipt" type="checkbox"> 十天内免登录
+                    </c:if>
                 </label>
                 &nbsp;&nbsp;
                 <span id="msg"></span>
