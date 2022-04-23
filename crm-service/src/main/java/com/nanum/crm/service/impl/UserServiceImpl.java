@@ -8,6 +8,8 @@ import com.nanum.crm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -55,5 +57,11 @@ public class UserServiceImpl implements UserService {
         // 3、账户锁定：登陆失败。
         if (!"1".equals(userDO.getLockState())) throw new BusinessException(EmBusinessError.USER_LOCK_STATE);
         return userDO;
+    }
+
+
+    @Override
+    public List<UserDO> queryAll() {
+        return userDOMapper.queryAll();
     }
 }

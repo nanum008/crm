@@ -199,4 +199,9 @@
         from tbl_user
         where email = #{param1}
     </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from tbl_user
+    </select>
 </mapper>

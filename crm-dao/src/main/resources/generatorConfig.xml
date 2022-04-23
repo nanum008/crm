@@ -5,7 +5,7 @@
 <generatorConfiguration>
     <!--classPathEntry:数据库的JDBC驱动,换成你自己的驱动位置 可选 -->
     <classPathEntry
-            location="C:\Users\nanum\.m2\repository\mysql\mysql-connector-java\8.0.28\mysql-connector-java-8.0.28.jar"/>
+            location="D:\Programs\apache-maven-3.8.1\repository\mysql\mysql-connector-java\8.0.28\mysql-connector-java-8.0.28.jar"/>
 
     <!-- 一个数据库一个context -->
     <context id="DB2Tables" targetRuntime="MyBatis3">

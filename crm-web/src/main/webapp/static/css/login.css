@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*background: url("./image/bg.jpg") no-repeat;*/
+    height: 100vh;
+}
+
+.head {
+    height: 80px;
+    line-height: 80px;
+    padding-left: 12px;
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    letter-spacing: 1px;
+}
+
+.head span {
+    padding-left: 2px;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+ul {
+    list-style: none;
+}
+
+.body {
+    background: url("../image/bg1.png") no-repeat;
+    background-size: 100% 100%;
+    opacity: .8;
+    height: 600px;
+    /*line-height: 600px;*/
+    position: relative;
+}
+
+.body .cover {
+    float: left;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .5;
+}
+
+.container {
+    overflow: hidden;
+}
+
+.main {
+    width: 400px;
+    height: 358px;
+    position: absolute;
+    top: 50%;
+    right: 320px;
+    transform: translateY(-50%);
+    box-sizing: border-box;
+    margin: 0 auto;
+    /*margin-top: 160px;*/
+    /*margin-bottom: 100px;*/
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px -4px #262626;
+    /*background: #fff url("./image/login_bg.svg") no-repeat 220px 10px;*/
+    background-color: #fff;
+    background-size: 100% 100%;
+    padding: 10px;
+    z-index: 100;
+    /*transition: all 1s;*/
+}
+
+.title {
+    height: 60px;
+    display: flex;
+    /* align-items: center; */
+    padding-left: 30px;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.title h1 {
+    /* height: 100%; */
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: black;
+}
+
+.title small {
+    font-size: 14px;
+    color: #898989;
+}
+
+#login .wrapper {
+    /*margin: 0 auto;*/
+    /*width: 200px;*/
+    padding-left: 30px;
+}
+
+#login .wrapper ul li:nth-child(odd) {
+    height: 20px;
+    line-height: 20px;
+}
+
+#login .wrapper ul li:nth-child(odd) label {
+    letter-spacing: 2px;
+    color: #898989;
+    font-size: 14px;
+}
+
+#login .wrapper ul li:nth-child(odd) span {
+    margin-left: 5px;
+    color: orangered;
+}
+
+#login .wrapper ul li:nth-child(even) {
+    height: 50px;
+    line-height: 50px;
+}
+
+#login .wrapper ul li:nth-child(even) input {
+    outline: none;
+    height: 30px;
+    width: 300px;
+    display: inline-block;
+    /*padding-left: 10px;*/
+    border: none;
+    border-bottom: 1px solid gray;
+    /*background-color: #f2f2f2;*/
+    /*border-radius: 4px;*/
+}
+
+.main .submit {
+    /*height: 52px;*/
+    line-height: 52px;
+}
+
+.main .submit button {
+    width: 80px;
+    letter-spacing: 5px;
+    height: 30px;
+    font-weight: 200;
+    /*margin-left: 30px;*/
+    color: #fff;
+    background-color: #5a98de;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 2px 2px 5px #adc6ff;
+    cursor: pointer;
+}
+
+.footer {
+    height: 200px;
+    padding-top: 30px;
+    font-size: 18px;
+}
+
+.footer p {
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+}
+
+#getValCode_btn {
+    background-color: #6C63FF;
+    color: #fff;
+    /*padding: 3px;*/
+    padding: 3px 6px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+#login {
+    height: auto;
+}
+
+#login .wrapper {
+    padding-top: 20px;
+}
+
+
+/* 记住密码 */
+
+.remember {
+    padding: 5px 0;
+}
+
+.remember input[type=checkbox] {
+    background-color: #f3f3ff;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.remember label {
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    position: relative;
+    padding-left: 10px;
+    color: #6c757d!important;
+    display: inline-block;
+    /* margin-top: 10px; */
+}
+
+.remember label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    left: 0;
+    margin-left: -16px;
+    border-radius: 3px;
+    background-color: #f9f9fa;
+    border: 1px solid #dfdfdf;
+}
+
+.remember label::after {
+    content: "";
+    width: 9px;
+    height: 9px;
+    top: 0;
+    left: 0;
+    border-radius: 0.05em;
+    background-color: var(--accent-color);
+    position: absolute;
+    transform: scale(0);
+    transition: 0.5s transform ease;
+}
+
+.remember input:checked+label::after {
+    transform: scale(1);
+    width: 9px;
+    height: 9px;
+    background: #5a98de;
+    left: -11px;
+    top: 6px;
+    border-radius: 3px;
+}

@@ -63,4 +63,8 @@
 
     </dependencies>
 
+
+    <build>
+        <finalName>crm</finalName>
+    </build>
 </project>
