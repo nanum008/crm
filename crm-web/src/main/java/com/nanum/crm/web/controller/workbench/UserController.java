@@ -59,6 +59,8 @@ public class UserController extends BaseController {
         //    }
         //}
         //if (!isAllowIp) throw new BusinessException(EmBusinessError.USER_IP_DONT_MATCH);
+
+        // session域对象里添加userDO
         httpServletRequest.getSession().setAttribute("user", userDO);
         // 记住密码
         if (isRemember) {
@@ -77,6 +79,7 @@ public class UserController extends BaseController {
             httpServletResponse.addCookie(cookie);
             httpServletResponse.addCookie(cookie1);
         }
+        // 返回data信息
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("user", userDO);
         return CommonResponse.create(userInfo);

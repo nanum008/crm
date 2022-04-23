@@ -47,7 +47,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--  数据表设置 -->
-        <table tableName="tbl_user" domainObjectName="UserDO"
+        <table tableName="tbl_activity" domainObjectName="MarketActivityDO"
                enableSelectByExample="false"
                selectByExampleQueryId="false"
                enableDeleteByExample="false"

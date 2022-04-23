@@ -66,7 +66,8 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">活动描述：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea id="description_ipt" name="" cols="" rows="" class="textarea" placeholder="说点什么...最少输入10个字符" datatype="*10-100"
+                <textarea id="description_ipt" name="" cols="" rows="" class="textarea" placeholder="说点什么...最少输入10个字符"
+                          datatype="*10-100"
                           dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
             </div>
@@ -98,13 +99,13 @@
         $.ajax({
             url: 'user/list',
             dataType: 'json',
-            method:'GET',
-            success:function (result) {
+            method: 'GET',
+            success: function (result) {
                 if (result.status == 'Fail') return;
                 let userList = result.data.userList;
                 if (userList.length == 0) return;
                 let owner_ipt = $('#owner_ipt');
-                for (let i = 0; i <userList.length; i++) {
+                for (let i = 0; i < userList.length; i++) {
                     let user = userList[i];
                     let option = document.createElement('option');
                     option.value = user.id;
@@ -114,6 +115,7 @@
             }
         })
     })
+
     function createActivity() {
         let title = $('#title_ipt').val();
         let description = $('#description_ipt').val();
@@ -121,12 +123,22 @@
         let cost = $('#cost_ipt').val();
         let datemin = $('#datemin_ipt').val();
         let datemax = $('#datemax_ipt').val();
-        let data = {
-            title,description,cost,datemin,datemax,owner
+        let params = {
+            name: title,
+            description,
+            cost,
+            startDate: datemin,
+            endDate: datemax,
+            owner
         }
-        $.post('/business/market-activity/add.do',data,function (result) {
-
-        })
+        $.post('business/market-activity/add.do', params, function (result) {
+            if (result.status == 'Success') {
+                alert('活动创建成功');
+                removeIframe();
+            }
+            if (result.status == 'Fail') alert('活动创建失败，原因是：' + result.data.errorMsg);
+            if (result.data.errorCode = 3330005) window.parent.location.href = '<%= basepath%>';
+        },'JSON')
     }
 </script>
 </body>
