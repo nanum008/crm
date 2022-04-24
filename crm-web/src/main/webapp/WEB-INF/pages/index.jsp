@@ -12,7 +12,7 @@
 </head>
 <body>
 <script type="text/javascript">
-    document.location.href = "user/login";
+    document.location.href = "workbench/user/login";
 </script>
 </body>
 </html>

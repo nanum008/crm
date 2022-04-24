@@ -26,98 +26,18 @@
 <body>
 <header class="navbar-wrapper">
     <div class="navbar navbar-fixed-top">
-        <div class="container-fluid cl"><a class="logo navbar-logo f-l mr-10 hidden-xs" href="<%=basepath%>">crm 客户关系管理系统</a>
-<%--            <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a>--%>
-<%--            <span class="logo navbar-slogan f-l mr-10 hidden-xs">v3.1</span>--%>
+        <div class="container-fluid cl"><a class="logo navbar-logo f-l mr-10 hidden-xs" href="<%=basepath%>">CRM-客户关系管理系统 <small class="f-12">@2022</small></a>
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
             <nav class="nav navbar-nav">
-<%--                <ul class="cl">--%>
-<%--                    <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i--%>
-<%--                            class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>--%>
-<%--                        <ul class="dropDown-menu menu radius box-shadow">--%>
-<%--                            <li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i--%>
-<%--                                    class="Hui-iconfont">&#xe616;</i> 资讯</a></li>--%>
-<%--                            <li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.html')"><i--%>
-<%--                                    class="Hui-iconfont">&#xe613;</i> 图片</a></li>--%>
-<%--                            <li><a href="javascript:;" onclick="product_add('添加资讯','product-add.html')"><i--%>
-<%--                                    class="Hui-iconfont">&#xe620;</i> 产品</a></li>--%>
-<%--                            <li><a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')"><i--%>
-<%--                                    class="Hui-iconfont">&#xe60d;</i> 用户</a></li>--%>
-<%--                        </ul>--%>
-<%--                    </li>--%>
-<%--                    <li class="dropDown dropDown_hover">--%>
-<%--                        <a href="javascript:;" class="dropDown_A">工具 <i class="Hui-iconfont">&#xe6d5;</i></a>--%>
-<%--                        <ul class="dropDown-menu menu radius box-shadow">--%>
-<%--                            <li>--%>
-<%--                                <a href="http://www.h-ui.net/bug.shtml" target="_blank">Bug兼容性汇总</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="http://www.h-ui.net/websafecolors.shtml" target="_blank">web安全色</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="http://www.h-ui.net/Hui-3.7-Hui-iconfont.shtml"--%>
-<%--                                   target="_blank">Hui-iconfont</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="javascript:;">web工具箱<i class="arrow Hui-iconfont">&#xe6d7;</i></a>--%>
-<%--                                <ul class="menu">--%>
-<%--                                    <li>--%>
-<%--                                        <a href="http://www.h-ui.net/tools/jsformat.shtml"--%>
-<%--                                           target="_blank">JS/HTML格式化工具</a>--%>
-<%--                                    </li>--%>
-<%--                                    <li>--%>
-<%--                                        <a href="http://www.h-ui.net/tools/HTMLtoJS.shtml"--%>
-<%--                                           target="_blank">HTML/JS转换工具</a>--%>
-<%--                                    </li>--%>
-<%--                                    <li>--%>
-<%--                                        <a href="http://www.h-ui.net/tools/cssformat.shtml"--%>
-<%--                                           target="_blank">CSS代码格式化工具</a>--%>
-<%--                                    </li>--%>
-<%--                                    <li>--%>
-<%--                                        <a href="http://www.h-ui.net/tools/daxiaoxie.shtml"--%>
-<%--                                           target="_blank">字母大小写转换工具</a>--%>
-<%--                                    </li>--%>
-<%--                                    <li>--%>
-<%--                                        <a href="http://www.h-ui.net/tools/fantizhuanhuan.shtml" target="_blank">繁体字、火星文转换</a>--%>
-<%--                                    </li>--%>
-<%--                                    <li>--%>
-<%--                                        <a href="javascript:;">三级菜单<i class="arrow Hui-iconfont">&#xe6d7;</i></a>--%>
-<%--                                        <ul class="menu">--%>
-<%--                                            <li>--%>
-<%--                                                <a href="javascript:;">四级菜单</a>--%>
-<%--                                            </li>--%>
-<%--                                            <li>--%>
-<%--                                                <a href="javascript:;">四级菜单</a>--%>
-<%--                                            </li>--%>
-<%--                                            <li>--%>
-<%--                                                <a href="javascript:;">四级菜单</a>--%>
-<%--                                            </li>--%>
-<%--                                        </ul>--%>
-<%--                                    </li>--%>
-<%--                                    <li>--%>
-<%--                                        <a href="#">三级导航</a>--%>
-<%--                                    </li>--%>
-<%--                                </ul>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="#">二级导航</a>--%>
-<%--                            </li>--%>
-<%--                            <li class="disabled">--%>
-<%--                                <a href="javascript:;">二级菜单</a>--%>
-<%--                            </li>--%>
-<%--                        </ul>--%>
-<%--                    </li>--%>
-<%--                </ul>--%>
             </nav>
             <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                 <ul class="cl">
-<%--                    <li>超级管理员</li>--%>
                     <li class="dropDown dropDown_hover">
                         <a href="#" class="dropDown_A">${sessionScope.user.name} <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
                             <li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
                             <li><a href="#">切换账户</a></li>
-                            <li><a href="user/logout.do">退出</a></li>
+                            <li><a href="workbench/user/logout.do">安全退出</a></li>
                         </ul>
                     </li>
                     <li id="Hui-msg"><a href="#" title="消息"><span class="badge badge-danger"></span><i
@@ -129,14 +49,15 @@
 </header>
 <aside class="Hui-aside">
     <div class="menu_dropdown bk_2">
-        <dl id="menu-article">
-            <dt><i class="Hui-iconfont">&#xe616;</i> 市场活动管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="business/market-activity-list" data-title="市场活动管理" href="javascript:void(0)">市场活动管理</a></li>
-                    <li><a data-href="business/market-activity-add" data-title="创建市场活动" href="javascript:void(0)">创建市场活动</a></li>
-                </ul>
-            </dd>
+        <dl id="menu-article" >
+<%--            <dt><i class="Hui-iconfont">&#xe616;</i> 市场活动管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
+            <dt style="display: flex;"><i class="Hui-iconfont">&#xe616;</i><a data-href="business/marketActivity/list" data-title="市场活动管理" style="text-decoration: none;height: 100%;margin-left: 5px;flex: 1;" href="javascript:void(0)">市场活动管理</a></dt>
+<%--            <dd>--%>
+<%--                <ul>--%>
+<%--                    <li><a data-href="business/marketActivity/list" data-title="市场活动管理" href="javascript:void(0)">市场活动管理</a></li>--%>
+<%--                    <li><a data-href="business/marketActivity/insert" data-title="创建市场活动" href="javascript:void(0)">创建市场活动</a></li>--%>
+<%--                </ul>--%>
+<%--            </dd>--%>
         </dl>
         <dl id="menu-picture">
             <dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>

@@ -7,4 +7,9 @@
     <settings>
         <setting name="logImpl" value="LOG4J"/>
     </settings>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
 </configuration>

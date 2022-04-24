@@ -1,4 +1,4 @@
-package com.nanum.crm.dao;
+package com.nanum.crm.dao.mapper;
 
 import com.nanum.crm.dao.dataobject.UserDO;
 import org.apache.ibatis.annotations.Mapper;

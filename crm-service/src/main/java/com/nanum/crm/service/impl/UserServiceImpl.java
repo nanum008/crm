@@ -2,7 +2,7 @@ package com.nanum.crm.service.impl;
 
 import com.nanum.crm.common.error.BusinessException;
 import com.nanum.crm.common.error.EmBusinessError;
-import com.nanum.crm.dao.UserDOMapper;
+import com.nanum.crm.dao.mapper.UserDOMapper;
 import com.nanum.crm.dao.dataobject.UserDO;
 import com.nanum.crm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -42,7 +42,7 @@
                 // 2、非法字符校验（略）
                 // 3、长度校验（略）
                 $.ajax({
-                    url: 'user/login.do',
+                    url: 'workbench/user/login.do',
                     type: 'post',
                     data: {
                         name: username,
@@ -67,7 +67,7 @@
 <body>
 <div class="container">
     <!-- 头部 -->
-    <div class="head"><span>CRM</span><i style="font-size: 12px;font-style: normal;margin-left: 5px">客户关系管理系统</i>
+    <div class="head"><span>CRM-客户关系管理系统</span>
     </div>
     <!-- 主体 -->
     <div class="body">

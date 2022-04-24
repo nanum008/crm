@@ -1,16 +1,22 @@
 package com.nanum.crm.service.impl;
 
-import com.nanum.crm.dao.MarketActivityDOMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.nanum.crm.dao.mapper.MarketActivityDOMapper;
 import com.nanum.crm.dao.dataobject.MarketActivityDO;
 import com.nanum.crm.service.MarketActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class MarketActivityServiceImpl implements MarketActivityService {
 
     @Autowired
     MarketActivityDOMapper marketActivityDOMapper;
+
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -40,5 +46,13 @@ public class MarketActivityServiceImpl implements MarketActivityService {
     @Override
     public int updateByPrimaryKey(MarketActivityDO record) {
         return marketActivityDOMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public PageInfo<MarketActivityDO> queryByCondition(Map<String, Object> params) {
+        PageHelper.startPage((int) params.get("pageNum"), (int) params.get("pageSize"));
+        List<MarketActivityDO> marketActivityDOList = marketActivityDOMapper.queryByCondition(params);
+        PageInfo<MarketActivityDO> pageInfo = new PageInfo<>(marketActivityDOList);
+        return pageInfo;
     }
 }

@@ -29,11 +29,11 @@
         <!-- 配置mapper文件的位置 -->
         <property name="mapperLocations" value="classpath:mappers/*Mapper.xml"/>
         <!--为实体包下的所有类起别名-->
-        <property name="typeAliasesPackage" value="com.nanum.crm."/>
+        <property name="typeAliasesPackage" value="com.nanum.crm.dao.dataobject"/>
     </bean>
     <!-- mapper注解扫描器配置,扫描@MapperScan注解,自动生成代码对象 -->
     <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.nanum.crm.dao"/>
+        <property name="basePackage" value="com.nanum.crm.dao.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

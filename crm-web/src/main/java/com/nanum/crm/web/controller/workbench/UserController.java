@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/workbench/user")
 public class UserController extends BaseController {
 
     public static final Logger logger = Logger.getLogger(UserController.class);
@@ -115,6 +115,6 @@ public class UserController extends BaseController {
         // 销毁Session，释放内存。
         httpSession.invalidate();
         // 跳转至首页（重定向）。
-        return "redirect:/user/login";
+        return "redirect:/workbench/user/login";
     }
 }
