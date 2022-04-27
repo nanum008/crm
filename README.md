@@ -1,3 +1,4 @@
+【暂停开发】
 # CRM-客户关系管理系统【开发中】
 > 特别声明：本项目**参考**[北京动力节点视频完成](https://www.bilibili.com/video/BV1tZ4y1d7kg)完成。
 
